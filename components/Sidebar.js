@@ -22,7 +22,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="bg-white sm:w-1/3 lg:w-1/5 sm:min-h-screen shadow-md">
+    <aside className="bg-white sm:w-full md:w-1/3 lg:w-1/5 min-h-screen shadow-md">
       <div className="px-4">
         <div className="bg-gradient-to-br from-blue-200 to-indigo-300 rounded-b-lg shadow-lg h-24">
           <div className="flex justify-center p-4">
@@ -37,7 +37,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap content-center mt-10 p-4">
+      <div className="flex flex-wrap justify-center md:justify-start mt-10 p-4">
         <Usercircle className="w-9 mr-2" />
         <div>
           <h2 className="text-gray-800 text-xl font">Hector Benavente</h2>
@@ -55,7 +55,7 @@ const Sidebar = () => {
               : "p-2 my-1"
           }
         >
-          <div className="flex flex-wrap content-start ">
+          <div className="flex flex-wrap justify-center sm:justify-start ">
             <Dashboard className="w-6" />
             <Link href="/dashboard">
               <a className="text-black block ml-2">Dashboard</a>
@@ -70,7 +70,7 @@ const Sidebar = () => {
               : "p-2 my-1"
           }
         >
-          <div className="flex flex-wrap content-start ">
+          <div className="flex flex-wrap justify-center sm:justify-start ">
             <Ventas className="w-6" />
             <Link href="/">
               <a className="text-black block ml-2">Ventas</a>
@@ -85,7 +85,7 @@ const Sidebar = () => {
               : "p-2 my-1"
           }
         >
-          <div className="flex flex-wrap content-start ">
+          <div className="flex flex-wrap justify-center sm:justify-start ">
             <Almacen className="w-6" />
             <Link href="/almacen">
               <a className="text-black block ml-2">Almacen</a>
@@ -100,7 +100,7 @@ const Sidebar = () => {
               : "p-2 my-1"
           }
         >
-          <div className="flex flex-wrap content-start ">
+          <div className="flex flex-wrap justify-center sm:justify-start ">
             <Caja className="w-6" />
             <Link href="/caja">
               <a className="text-black block ml-2">Caja</a>
@@ -115,7 +115,7 @@ const Sidebar = () => {
               : "p-2 my-1"
           }
         >
-          <div className="flex flex-wrap content-start ">
+          <div className="flex flex-wrap justify-center sm:justify-start ">
             <Administracion className="w-6" />
             <Link href="/administracion">
               <a className="text-black block ml-2">Admnistración</a>
@@ -124,7 +124,7 @@ const Sidebar = () => {
         </li>
       </nav>
 
-      <div className="w-full mt-24 flex ">
+      <div className="w-full mt-24 flex">
         <div className="cursor-pointer flex flex-wrap content-start bg-gradient-to-r from-blue-200 to-indigo-300 rounded-r-lg shadow-lg py-1 px-4">
           <button type="button" onClick={() => cerrarSesion()}>
             <h3 className="text-gray-900 text-lg">Cerrar</h3>
