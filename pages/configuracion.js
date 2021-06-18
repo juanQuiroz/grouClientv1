@@ -1,41 +1,55 @@
 import React from "react";
 import Layout from "../components/Layout";
 
+import Image from "next/image";
+
 const Configuracion = () => {
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
-    <div>
+    <>
       <Layout>
         <h1 className="text-2xl text-gray-800 text-light m-10">
           Configuracion
         </h1>
-        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-          <div className="md:flex">
-            <div class="md:flex-shrink-0">
-              <img
-                className="h-48 w-full object-cover md:h-full md:w-48"
-                src="/img/store.jpg"
-                alt="Man looking at item at a store"
-              />
-            </div>
-            <div className="p-8">
-              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                Case study
-              </div>
-              <a
-                href="#"
-                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-              >
-                Finding customers for your new business
-              </a>
-              <p className="mt-2 text-gray-500">
-                Getting a new business off the ground is a lot of hard work.
-                Here are five ideas you can use to find your first customers.
-              </p>
+
+        <div class="relative bg-white dark:bg-gray-800">
+          <div class="flex flex-col sm:flex-row sm:justify-around">
+            <div class="w-72 h-screen">
+              <nav class="mt-10 px-6 ">
+                <a
+                  class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
+                  href="#"
+                >
+                  <span class="mx-4 text-lg font-normal">Element</span>
+                  <span class="flex-grow text-right"></span>
+                </a>
+                <a
+                  class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-800 dark:text-gray-100 rounded-lg bg-gray-100 dark:bg-gray-600"
+                  href="#"
+                >
+                  <span class="mx-4 text-lg font-normal">Form</span>
+                  <span class="flex-grow text-right"></span>
+                </a>
+                <a
+                  class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
+                  href="#"
+                >
+                  <span class="mx-4 text-lg font-normal">Commerce</span>
+                  <span class="flex-grow text-right"></span>
+                </a>
+                <a
+                  class="hover:text-gray-800 hover:bg-gray-100 flex items-center p-2 my-6 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200  text-gray-600 dark:text-gray-400 rounded-lg "
+                  href="#"
+                >
+                  <span class="mx-4 text-lg font-normal">Navigation</span>
+                  <span class="flex-grow text-right"></span>
+                </a>
+              </nav>
             </div>
           </div>
         </div>
       </Layout>
-    </div>
+    </>
   );
 };
 
