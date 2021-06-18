@@ -22,11 +22,11 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="relative bg-white sm:w-full sm:justify-around md:w-1/3 lg:w-1/5 min-h-screen shadow-md">
+    <aside className=" bg-white sm:w-full sm:justify-around md:w-1/3 lg:w-1/5 min-h-screen shadow-md">
       <div className="px-4">
         <div className="bg-gradient-to-br from-blue-200 to-indigo-300 rounded-b-lg shadow-lg h-24">
           <div className="flex justify-center p-4">
-            <Map className="w-12 mr-2" />
+            {/* <Map className="w-12 mr-2" /> */}
             <div>
               <h2 className="text-gray-900 text-3xl font-bold">Oishi</h2>
               <h3 className="text-gray-700 text-xl font-normal -mt-2">
@@ -38,7 +38,7 @@ const Sidebar = () => {
       </div>
 
       <div className="flex flex-wrap justify-center md:justify-start mt-10 p-4">
-        <Usercircle className="w-9 mr-2" />
+        {/* <Usercircle className="w-9 mr-2" /> */}
         <div>
           <h2 className="text-gray-800 text-xl font">Hector Benavente</h2>
           <h3 className="text-gray-700 text-lg font-thin -mt-2">
@@ -56,7 +56,7 @@ const Sidebar = () => {
           }
         >
           <div className="flex flex-wrap justify-center sm:justify-start ">
-            <Dashboard className="w-6" />
+            {/* <Dashboard className="w-6" /> */}
             <Link href="/dashboard">
               <a className="text-black block ml-2">Dashboard</a>
             </Link>
@@ -71,7 +71,7 @@ const Sidebar = () => {
           }
         >
           <div className="flex flex-wrap justify-center sm:justify-start ">
-            <Ventas className="w-6" />
+            {/* <Ventas className="w-6" /> */}
             <Link href="/">
               <a className="text-black block ml-2">Ventas</a>
             </Link>
@@ -86,7 +86,7 @@ const Sidebar = () => {
           }
         >
           <div className="flex flex-wrap justify-center sm:justify-start ">
-            <Almacen className="w-6" />
+            {/* <Almacen className="w-6" /> */}
             <Link href="/almacen">
               <a className="text-black block ml-2">Almacen</a>
             </Link>
@@ -101,7 +101,7 @@ const Sidebar = () => {
           }
         >
           <div className="flex flex-wrap justify-center sm:justify-start ">
-            <Caja className="w-6" />
+            {/* <Caja className="w-6" /> */}
             <Link href="/caja">
               <a className="text-black block ml-2">Caja</a>
             </Link>
@@ -116,7 +116,7 @@ const Sidebar = () => {
           }
         >
           <div className="flex flex-wrap justify-center sm:justify-start ">
-            <Administracion className="w-6" />
+            {/* <Administracion className="w-6" /> */}
             <Link href="/administracion">
               <a className="text-black block ml-2">Admnistración</a>
             </Link>
@@ -130,10 +130,10 @@ const Sidebar = () => {
             <h3 className="text-gray-900 text-lg">Cerrar</h3>
             <h3 className="-mt-2 text-gray-900 text-lg">Sesion</h3>
           </button>
-          <CerrarSesion className="w-8 ml-3" />
+          {/* <CerrarSesion className="w-8 ml-3" /> */}
         </div>
         <Link href="configuracion">
-          <Configuracion className="w-8 ml-12 cursor-pointer" />
+          {/* <Configuracion className="w-8 ml-12 cursor-pointer" /> */}
         </Link>
       </div>
     </aside>
