@@ -22,7 +22,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="bg-white sm:w-full sm:justify-around md:w-1/3 lg:w-1/5 min-h-screen shadow-md">
+    <aside className="relative bg-white sm:w-full sm:justify-around md:w-1/3 lg:w-1/5 min-h-screen shadow-md">
       <div className="px-4">
         <div className="bg-gradient-to-br from-blue-200 to-indigo-300 rounded-b-lg shadow-lg h-24">
           <div className="flex justify-center p-4">
