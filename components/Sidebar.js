@@ -15,6 +15,9 @@ import Configuracion from "../assets/icons/settings.svg";
 const Sidebar = () => {
   // Routing de nextjs
   const router = useRouter();
+  console.log(router);
+  const res = router.pathname.search("/dashboard");
+  console.log(res);
 
   const cerrarSesion = () => {
     localStorage.removeItem("token");
@@ -50,14 +53,14 @@ const Sidebar = () => {
       <nav className="mt-5 list-none py-4 px-4">
         <li
           className={
-            router.pathname === "/dashboard"
+            router.pathname.search("/dashboard") === 0
               ? "bg-gradient-to-br from-blue-100 to-indigo-200 p-2 rounded shadow-lg border-l-4 border-red-600 my-1"
               : "p-2 my-1"
           }
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Dashboard className="w-6" />
-            <Link href="/dashboard">
+            <Link href="/dashboard/dashboard1">
               <a className="text-black block ml-2">Dashboard</a>
             </Link>
           </div>
@@ -65,14 +68,14 @@ const Sidebar = () => {
 
         <li
           className={
-            router.pathname === "/"
+            router.pathname.search("/ventas") === 0
               ? "bg-gradient-to-br from-blue-100 to-indigo-200 p-2 rounded shadow-lg border-l-4 border-red-600 my-1"
               : "p-2 my-1"
           }
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Ventas className="w-6" />
-            <Link href="/">
+            <Link href="/ventas">
               <a className="text-black block ml-2">Ventas</a>
             </Link>
           </div>
@@ -80,7 +83,7 @@ const Sidebar = () => {
 
         <li
           className={
-            router.pathname === "/almacen"
+            router.pathname.search("/almacen") === 0
               ? "bg-gradient-to-br from-blue-100 to-indigo-200 p-2 rounded shadow-lg border-l-4 border-red-600 my-1"
               : "p-2 my-1"
           }
@@ -95,7 +98,7 @@ const Sidebar = () => {
 
         <li
           className={
-            router.pathname === "/caja"
+            router.pathname.search("/caja") === 0
               ? "bg-gradient-to-br from-blue-100 to-indigo-200 p-2 rounded shadow-lg border-l-4 border-red-600 my-1"
               : "p-2 my-1"
           }
@@ -110,7 +113,7 @@ const Sidebar = () => {
 
         <li
           className={
-            router.pathname === "/administracion"
+            router.pathname.search("/administracion") === 0
               ? "bg-gradient-to-br from-blue-100 to-indigo-200 p-2 rounded shadow-lg border-l-4 border-red-600 my-1"
               : "p-2 my-1"
           }
@@ -124,16 +127,20 @@ const Sidebar = () => {
         </li>
       </nav>
 
-      <div className="w-full mt-24 flex">
-        <div className="cursor-pointer flex flex-wrap content-start bg-gradient-to-r from-blue-200 to-indigo-300 rounded-r-lg shadow-lg py-1 px-4">
+      <div className="w-full mt-24 flex justify-between">
+        <div className="cursor-pointer flex  flex-wrap items-center content-start bg-gradient-to-r from-blue-200 to-indigo-300 rounded-r-lg shadow-lg py-1 px-4">
           <button type="button" onClick={() => cerrarSesion()}>
             <h3 className="text-gray-900 text-lg">Cerrar</h3>
-            <h3 className="-mt-2 text-gray-900 text-lg">Sesion</h3>
+            <h3 className="-mt-2 text-gray-900 text-lg">Sesión</h3>
           </button>
-          <CerrarSesion className="w-8 ml-3" />
+          <a>
+            <CerrarSesion className="w-8 ml-3" />
+          </a>
         </div>
-        <Link href="configuracion">
-          <Configuracion className="w-8 ml-12 cursor-pointer" />
+        <Link href="/configuracion/crearusuarios">
+          <a className="flex items-center">
+            <Configuracion className="w-8 ml-12 cursor-pointer mr-8" />
+          </a>
         </Link>
       </div>
     </aside>

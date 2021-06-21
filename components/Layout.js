@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         <title>Grou</title>
       </Head>
 
-      {router.pathname === "/login" ? (
+      {router.pathname === "/" ? (
         <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex justify-center items-center">
           <div>{children}</div>
         </div>
@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
         //     </main>
         //   </div>
         // </div>
-        <div className="bg-gray-200 min-h-screen">
+        <div className="bg-gray-100 min-h-screen">
           <div className="sm:flex min-h-screen">
             <Sidebar />
 

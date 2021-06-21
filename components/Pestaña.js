@@ -1,0 +1,24 @@
+import React from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
+const Pestaña = ({ nombre, ruta }) => {
+  const router = useRouter();
+  return (
+    <li
+      className={
+        router.pathname === "/caja"
+          ? "mr-5 bg-gray-100 p-2 rounded shadow-lg border-b-4 border-red-600"
+          : "p-2 mr-5"
+      }
+    >
+      <div className="flex flex-wrap items-center justify-center sm:justify-start ">
+        <Link href="/caja">
+          <a className="text-gray-600 block font-medium">{nombre}</a>
+        </Link>
+      </div>
+    </li>
+  );
+};
+
+export default Pestaña;
