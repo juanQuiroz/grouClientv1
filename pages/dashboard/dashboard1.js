@@ -1,14 +1,9 @@
-import React from "react";
 import Layout from "../../components/Layout";
 
-const Dashboard1 = () => {
+export default function DashboardPrincipal() {
   return (
-    <>
-      <Layout>
-        <h1 className="text-2xl text-gray-800 text-light">Dashboard</h1>
-      </Layout>
-    </>
+    <Layout>
+      <h1 className="text-2xl text-gray-800 text-light">DashboardPrincipal</h1>
+    </Layout>
   );
-};
-
-export default Dashboard1;
+}

@@ -15,13 +15,10 @@ import Configuracion from "../assets/icons/settings.svg";
 const Sidebar = () => {
   // Routing de nextjs
   const router = useRouter();
-  console.log(router);
-  const res = router.pathname.search("/dashboard");
-  console.log(res);
 
   const cerrarSesion = () => {
     localStorage.removeItem("token");
-    router.push("/login");
+    router.push("/");
   };
 
   return (
@@ -75,7 +72,7 @@ const Sidebar = () => {
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Ventas className="w-6" />
-            <Link href="/ventas">
+            <Link href="/ventas/crearventas">
               <a className="text-black block ml-2">Ventas</a>
             </Link>
           </div>
@@ -90,7 +87,7 @@ const Sidebar = () => {
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Almacen className="w-6" />
-            <Link href="/almacen">
+            <Link href="/almacen/productos">
               <a className="text-black block ml-2">Almacen</a>
             </Link>
           </div>
@@ -105,7 +102,7 @@ const Sidebar = () => {
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Caja className="w-6" />
-            <Link href="/caja">
+            <Link href="/caja/aperturacierre">
               <a className="text-black block ml-2">Caja</a>
             </Link>
           </div>
@@ -120,7 +117,7 @@ const Sidebar = () => {
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Administracion className="w-6" />
-            <Link href="/administracion">
+            <Link href="/administracion/administracion">
               <a className="text-black block ml-2">Admnistración</a>
             </Link>
           </div>
@@ -137,7 +134,7 @@ const Sidebar = () => {
             <CerrarSesion className="w-8 ml-3" />
           </a>
         </div>
-        <Link href="/configuracion/crearusuarios">
+        <Link href="/configuracion/usuarios">
           <a className="flex items-center">
             <Configuracion className="w-8 ml-12 cursor-pointer mr-8" />
           </a>

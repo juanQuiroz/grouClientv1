@@ -7,13 +7,13 @@ const Pestaña = ({ nombre, ruta }) => {
   return (
     <li
       className={
-        router.pathname === "/caja"
+        router.pathname === `${ruta}`
           ? "mr-5 bg-gray-100 p-2 rounded shadow-lg border-b-4 border-red-600"
           : "p-2 mr-5"
       }
     >
       <div className="flex flex-wrap items-center justify-center sm:justify-start ">
-        <Link href="/caja">
+        <Link href={`${ruta}`}>
           <a className="text-gray-600 block font-medium">{nombre}</a>
         </Link>
       </div>

@@ -29,7 +29,7 @@ const Login = () => {
       const { usuario, password } = valores;
       try {
         const res = await axios.post(
-          "https://oishicanete.herokuapp.com/api/auth/login",
+          "https://oishicanete.herokuapp.com/api/v1/auth/login",
           {
             usuario,
             password,
@@ -51,7 +51,7 @@ const Login = () => {
 
         if (res.data.access_token) {
           setTimeout(() => {
-            router.push("/");
+            router.push("/ventas");
           }, 1500);
         }
       } catch (error) {
