@@ -51,7 +51,7 @@ const Login = () => {
 
         if (res.data.access_token) {
           setTimeout(() => {
-            router.push("/ventas");
+            router.push("/ventas/crearventas");
           }, 1500);
         }
       } catch (error) {
