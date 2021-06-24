@@ -52,7 +52,7 @@ const Login = () => {
         if (res.data.access_token) {
           setTimeout(() => {
             router.push("/ventas/crearventas");
-          }, 1500);
+          }, 1000);
         }
       } catch (error) {
         SetMensaje({

@@ -72,7 +72,7 @@ const Sidebar = () => {
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Ventas className="w-6" />
-            <Link href="/ventas/crearventas">
+            <Link href="/ventas/crearventas/enlocal">
               <a className="text-black block ml-2">Ventas</a>
             </Link>
           </div>
@@ -87,7 +87,7 @@ const Sidebar = () => {
         >
           <div className="flex flex-wrap items-center justify-center sm:justify-start ">
             <Almacen className="w-6" />
-            <Link href="/almacen/productos">
+            <Link href="/almacen/productos/misproductos">
               <a className="text-black block ml-2">Almacen</a>
             </Link>
           </div>
@@ -134,7 +134,7 @@ const Sidebar = () => {
             <CerrarSesion className="w-8 ml-3" />
           </a>
         </div>
-        <Link href="/configuracion/usuarios">
+        <Link href="/configuracion/usuarios/crearusuarios">
           <a className="flex items-center">
             <Configuracion className="w-8 ml-12 cursor-pointer mr-8" />
           </a>
