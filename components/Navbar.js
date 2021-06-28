@@ -53,10 +53,22 @@ const Navbar = () => {
     ];
   } else if (router.pathname.search("/caja") === 0) {
     var pestañas = [
-      { nombre: "Ingresos", ruta: "/caja/ingresos" },
-      { nombre: "Egresos", ruta: "/caja/egresos" },
-      { nombre: "Créditos", ruta: "/caja/creditos" },
-      { nombre: "Apertura / Cierre", ruta: "/caja/aperturacierre" },
+      {
+        nombre: "Ingresos",
+        ruta: "/caja/ingresos",
+        rutaIndex: "/caja/ingresos/cobrar",
+      },
+      { nombre: "Egresos", ruta: "/caja/egresos", rutaIndex: "/caja/egresos" },
+      {
+        nombre: "Créditos",
+        ruta: "/caja/creditos",
+        rutaIndex: "/caja/creditos",
+      },
+      {
+        nombre: "Apertura / Cierre",
+        ruta: "/caja/aperturacierre",
+        rutaIndex: "/caja/aperturacierre",
+      },
     ];
   } else if (router.pathname.search("/administracion") === 0) {
     var pestañas = [

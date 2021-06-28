@@ -72,6 +72,21 @@ const Tabs = () => {
         ruta: "/almacen/insumos/movimientos",
       },
     ];
+  } else if (router.pathname.search("/caja/ingresos") === 0) {
+    var tabs = [
+      {
+        nombre: "Cobrar",
+        ruta: "/caja/ingresos/cobrar",
+      },
+      {
+        nombre: "Otros ingresos",
+        ruta: "/caja/ingresos/otrosingresos",
+      },
+      {
+        nombre: "Historial",
+        ruta: "/caja/ingresos/historial",
+      },
+    ];
   } else if (router.pathname.search("/configuracion/usuarios") === 0) {
     var tabs = [
       {
@@ -86,8 +101,8 @@ const Tabs = () => {
   }
 
   return (
-    <div className="bg-gray-200 m-2 rounded-lg h-9">
-      <nav className="flex flex-col sm:flex-row justify-center items-between h-9 ">
+    <div className="bg-gray-200 m-2 rounded-lg">
+      <nav className="flex flex-row justify-center items-between">
         {tabs.map(tab => (
           <Tab nombre={tab.nombre} ruta={tab.ruta} key={tab.ruta} />
         ))}

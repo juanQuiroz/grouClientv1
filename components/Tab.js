@@ -8,7 +8,7 @@ const Tab = ({ nombre, ruta }) => {
     <button
       className={
         router.pathname.search(`${ruta}`) === 0
-          ? "shadow text-gray-900 font-bold m-1 flex-grow bg-gray-100 rounded-lg  px-3 focus:outline-none"
+          ? " shadow text-gray-900 font-bold m-1 flex-grow bg-gray-100 rounded-lg  px-3 focus:outline-none"
           : " text-gray-900 font m-1 flex-grow bg-gray-200 rounded-lg  px-3 focus:outline-none"
       }
     >
