@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import { useFormik } from "formik";
@@ -7,10 +8,13 @@ import * as Yup from "yup";
 import Image from "next/image";
 import Usuario from "../assets/icons/userCircle.svg";
 
-// import clienteAxios from "../config/axios";
-import axios from "axios";
+import authContext from "../context/auth/authContext";
 
 const Login = () => {
+  // Extraer del context de autenticacion
+  const authsContext = useContext(authContext);
+  const { logIn, user } = authsContext;
+
   // State de mensajes
   const [mensaje, SetMensaje] = useState({});
 
@@ -28,31 +32,17 @@ const Login = () => {
     onSubmit: async valores => {
       const { usuario, password } = valores;
       try {
-        const res = await axios.post(
-          "https://oishicanete.herokuapp.com/api/v1/auth/login",
-          {
-            usuario,
-            password,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          },
-        );
+        logIn({ usuario, password });
 
-        console.log(res.data);
-        localStorage.setItem("token", res.data.access_token);
         SetMensaje({
           estado: true,
           mensaje: "Bienvenido al sistema",
         });
 
-        if (res.data.access_token) {
+        if (user.access_token != null) {
           setTimeout(() => {
             router.push("/ventas/crearventas/enlocal");
-          }, 1000);
+          }, 500);
         }
       } catch (error) {
         SetMensaje({

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -12,14 +12,24 @@ import Administracion from "../assets/icons/user-admin.svg";
 import CerrarSesion from "../assets/icons/logout.svg";
 import Configuracion from "../assets/icons/settings.svg";
 
+import authContext from "../context/auth/authContext";
+
 const Sidebar = () => {
   // Routing de nextjs
   const router = useRouter();
+
+  // Context de autenticacion
+  const authsContext = useContext(authContext);
+  const { user } = authsContext;
 
   const cerrarSesion = () => {
     localStorage.removeItem("token");
     router.push("/");
   };
+
+  if (user !== null) {
+    console.log(user.user);
+  }
 
   return (
     <aside className=" bg-white sm:w-full md:w-1/3 lg:w-1/5 min-h-screen shadow-md">
@@ -37,15 +47,19 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-center md:justify-start mt-10 p-4">
-        <Usercircle className="w-9 mr-2" />
-        <div>
-          <h2 className="text-gray-800 text-xl font">Hector Benavente</h2>
-          <h3 className="text-gray-700 text-lg font-thin -mt-2">
-            Super Administrador
-          </h3>
+      {user.user !== null && (
+        <div className="flex flex-wrap items-center justify-center md:justify-start mt-10 p-4">
+          <Usercircle className="w-9 mr-2" />
+          <div>
+            <h2 className="text-gray-800 text-xl font">
+              {user.user.nombres} {user.user.apellidos}
+            </h2>
+            <h3 className="text-gray-700 text-lg font-thin -mt-2">
+              {user.user.rol_usuario_id.descripcion}
+            </h3>
+          </div>
         </div>
-      </div>
+      )}
 
       <nav className="mt-5 list-none py-4 px-4">
         <li

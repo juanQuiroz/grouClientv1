@@ -18,7 +18,7 @@ const AuthState = props => {
     user: null,
   };
 
-  const [state, dipatach] = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   // returns authenticated user
   const authenticadedUser = async () => {
@@ -33,7 +33,7 @@ const AuthState = props => {
   // Cuando el usuario inicia sesion
   const logIn = async data => {
     try {
-      const res = await clienteAxios.post("/api/auth/login", data, {
+      const res = await clienteAxios.post("/auth/iniciarSesion", data, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -41,15 +41,15 @@ const AuthState = props => {
       });
 
       dispatch({
-        type: LOGIN_EXITOSO,
-        payload: respuesta.data,
+        type: LOGIN_SUCCESS,
+        payload: res.data,
       });
 
-      authenticadedUser();
+      // authenticadedUser();
     } catch (error) {
-      console.log(error.response.data.msg);
+      console.log(error);
       const alerta = {
-        msg: error.response.data.msg,
+        msg: error,
         classname: "bg-red-400 p-4 rounded font-bold shadow-md text-center",
       };
       dispatch({

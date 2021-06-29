@@ -4,8 +4,7 @@ import Link from "next/link";
 
 const Pestaña = ({ nombre, ruta, rutaIndex }) => {
   const router = useRouter();
-  console.log(ruta);
-  console.log(router);
+
   return (
     <li
       className={
