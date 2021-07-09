@@ -34,22 +34,21 @@ const Login = () => {
       try {
         logIn({ usuario, password });
 
+        if (user.data.access_token) {
+          setTimeout(() => {
+            router.push("/ventas/crearventas/enlocal");
+          }, 1000);
+        }
+
         SetMensaje({
           estado: true,
           mensaje: "Bienvenido al sistema",
         });
-
-        if (user.access_token != null) {
-          setTimeout(() => {
-            router.push("/ventas/crearventas/enlocal");
-          }, 500);
-        }
       } catch (error) {
         SetMensaje({
           estado: false,
           mensaje: "Error al iniciar sesion",
         });
-        console.log(error);
 
         setTimeout(() => {
           SetMensaje({

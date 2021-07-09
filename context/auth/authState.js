@@ -2,8 +2,9 @@ import React, { useReducer } from "react";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
 
-import clienteAxios from "../../config/axios";
 import tokenAuth from "../../config/tokenAuth";
+import { useMutation } from "react-query";
+import * as api from "../../api/usuarios/usuariosApi";
 
 import { LOGIN_SUCCESS, LOGIN_ERROR } from "../../types";
 
@@ -16,6 +17,7 @@ const AuthState = props => {
     // token: tkn,
     authenticaded: null,
     user: null,
+    query: null,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -33,16 +35,27 @@ const AuthState = props => {
   // Cuando el usuario inicia sesion
   const logIn = async data => {
     try {
-      const res = await clienteAxios.post("/auth/iniciarSesion", data, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
+      // const res = await clienteAxios.post("/auth/iniciarSesion", data, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Accept: "application/json",
+      //   },
+      // });
+
+      // const query = useQuery("repoData", () =>
+      //   fetch(
+      //     "https://oishicanete.herokuapp.com/api/v1/auth/iniciarSesion",
+      //     data,
+      //   ).then(res => res.json()),
+      // );
+
+      const { data, isLoading } = useMutation("auth", api.autenticar);
+
+      console.log(isLoading);
 
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data,
+        payload: res,
       });
 
       // authenticadedUser();
@@ -64,6 +77,7 @@ const AuthState = props => {
       value={{
         token: state.token,
         authenticaded: state.authenticaded,
+        query: state.query,
         user: state.user,
         logIn,
       }}

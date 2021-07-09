@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const clienteAxios = axios.create({
+const api = axios.create({
   baseURL: process.env.customKey,
 });
 
-export default clienteAxios;
+export default api;

@@ -27,10 +27,6 @@ const Sidebar = () => {
     router.push("/");
   };
 
-  if (user !== null) {
-    console.log(user.user);
-  }
-
   return (
     <aside className=" bg-white sm:w-full md:w-1/3 lg:w-1/5 min-h-screen shadow-md">
       <div className="px-4">
@@ -47,16 +43,12 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {user.user !== null && (
+      {user && (
         <div className="flex flex-wrap items-center justify-center md:justify-start mt-10 p-4">
           <Usercircle className="w-9 mr-2" />
           <div>
-            <h2 className="text-gray-800 text-xl font">
-              {user.user.nombres} {user.user.apellidos}
-            </h2>
-            <h3 className="text-gray-700 text-lg font-thin -mt-2">
-              {user.user.rol_usuario_id.descripcion}
-            </h3>
+            <h2 className="text-gray-800 text-xl font">Nombre</h2>
+            <h3 className="text-gray-700 text-lg font-thin -mt-2">Apellido</h3>
           </div>
         </div>
       )}
