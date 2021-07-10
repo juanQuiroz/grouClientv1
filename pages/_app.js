@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import AuthState from "../context/auth/authState";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }) {
       <AuthState>
         <Component {...pageProps} />
       </AuthState>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }

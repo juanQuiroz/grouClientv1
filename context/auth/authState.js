@@ -22,6 +22,8 @@ const AuthState = props => {
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
+  const { isLoading, data, mutate } = useMutation(api.autenticar);
+
   // returns authenticated user
   const authenticadedUser = async () => {
     const token = localStorage.getItem("token");
@@ -33,30 +35,16 @@ const AuthState = props => {
   };
 
   // Cuando el usuario inicia sesion
-  const logIn = async data => {
+  const logIn = async datos => {
     try {
-      // const res = await clienteAxios.post("/auth/iniciarSesion", data, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Accept: "application/json",
-      //   },
-      // });
+      mutate(datos);
 
-      // const query = useQuery("repoData", () =>
-      //   fetch(
-      //     "https://oishicanete.herokuapp.com/api/v1/auth/iniciarSesion",
-      //     data,
-      //   ).then(res => res.json()),
-      // );
-
-      const { data, isLoading } = useMutation("auth", api.autenticar);
-
-      console.log(isLoading);
-
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res,
-      });
+      if (!isLoading) {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: data,
+        });
+      }
 
       // authenticadedUser();
     } catch (error) {

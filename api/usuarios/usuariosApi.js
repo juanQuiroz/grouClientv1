@@ -1,7 +1,7 @@
 import api from "../../config/axios";
 
-export const autenticar = async () => {
-  const res = await clienteAxios.post("/auth/iniciarSesion", data, {
+export const autenticar = async data => {
+  const res = await api.post("/auth/iniciarSesion", data, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

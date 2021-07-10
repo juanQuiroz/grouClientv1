@@ -1,14 +1,13 @@
 import React, { useState, useContext } from "react";
-
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
 import Image from "next/image";
 import Usuario from "../assets/icons/userCircle.svg";
-
+import { useQuery } from "react-query";
 import authContext from "../context/auth/authContext";
+import * as api from "../api/usuarios/usuariosApi";
 
 const Login = () => {
   // Extraer del context de autenticacion
@@ -33,8 +32,8 @@ const Login = () => {
       const { usuario, password } = valores;
       try {
         logIn({ usuario, password });
-
-        if (user.data.access_token) {
+        console.log(user);
+        if (user.access_token) {
           setTimeout(() => {
             router.push("/ventas/crearventas/enlocal");
           }, 1000);
