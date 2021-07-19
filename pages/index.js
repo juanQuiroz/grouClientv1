@@ -31,6 +31,7 @@ const Login = () => {
     }),
     onSubmit: async valores => {
       const { usuario, password } = valores;
+      setSpinner(true);
 
       try {
         const res = await axios.post(
@@ -44,24 +45,27 @@ const Login = () => {
           },
         );
 
-        setSpinner(true);
-        SetMensaje({
-          estado: true,
-          mensaje: "Bienvenido al sistema",
-        });
-
         setTimeout(() => {
-          if (res.data.access_token) {
-            localStorage.setItem("token", res.data.access_token);
-            router.push("/ventas/crearventas/enlocal");
-          }
-        }, 2000);
+          SetMensaje({
+            estado: true,
+            mensaje: "Bienvenido al sistema",
+          });
+          setSpinner(false);
+          setTimeout(() => {
+            if (res.data.access_token) {
+              localStorage.setItem("token", res.data.access_token);
+              router.push("/ventas/crearventas/enlocal");
+            }
+          }, 500);
+        }, 1000);
       } catch (e) {
         console.log(e);
+
         SetMensaje({
           estado: false,
           mensaje: "Error al iniciar sesion",
         });
+        setSpinner(false);
       }
       setTimeout(() => {
         SetMensaje({
@@ -98,7 +102,7 @@ const Login = () => {
             {spinner ? <Spinner /> : <Usuario className="w-16" />}
           </div>
           <h1 className=" my-3 text-center text-blue-900 font-medium text-xl">
-            Iniciar Sesión
+            {spinner ? "Iniciando Sesión" : "Iniciar Sesión"}
           </h1>
           <form onSubmit={formik.handleSubmit} className="px-5 py-2">
             <div className="mb-3">
