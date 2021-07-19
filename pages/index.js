@@ -5,17 +5,18 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Image from "next/image";
 import Usuario from "../assets/icons/userCircle.svg";
-import { useQuery } from "react-query";
 import authContext from "../context/auth/authContext";
-import * as api from "../api/usuarios/usuariosApi";
+import axios from "axios";
+import Spinner from "../components/Spinner";
 
 const Login = () => {
   // Extraer del context de autenticacion
   const authsContext = useContext(authContext);
-  const { logIn, user } = authsContext;
+  const { usuarioAutenticado } = authsContext;
 
   // State de mensajes
   const [mensaje, SetMensaje] = useState({});
+  const [spinner, setSpinner] = useState(false);
 
   const router = useRouter();
 
@@ -30,45 +31,57 @@ const Login = () => {
     }),
     onSubmit: async valores => {
       const { usuario, password } = valores;
-      try {
-        logIn({ usuario, password });
-        console.log(user);
-        if (user.access_token) {
-          setTimeout(() => {
-            router.push("/ventas/crearventas/enlocal");
-          }, 1000);
-        }
 
+      try {
+        const res = await axios.post(
+          "https://oishicanete.herokuapp.com/api/v1/auth/iniciarSesion",
+          valores,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          },
+        );
+
+        setSpinner(true);
         SetMensaje({
           estado: true,
           mensaje: "Bienvenido al sistema",
         });
-      } catch (error) {
+
+        setTimeout(() => {
+          if (res.data.access_token) {
+            localStorage.setItem("token", res.data.access_token);
+            router.push("/ventas/crearventas/enlocal");
+          }
+        }, 2000);
+      } catch (e) {
+        console.log(e);
         SetMensaje({
           estado: false,
           mensaje: "Error al iniciar sesion",
         });
-
-        setTimeout(() => {
-          SetMensaje({
-            estado: null,
-            mensaje: null,
-          });
-        }, 3000);
       }
+      setTimeout(() => {
+        SetMensaje({
+          estado: null,
+          mensaje: null,
+        });
+      }, 3000);
     },
   });
 
   const mostrarMensaje = () => {
     if (mensaje.estado) {
       return (
-        <div className="bg-green-200 px-3 my-5 mx-3 py-4 max-w-sm text-center  rounded shadow text-xl text-green-700 border-2 border-green-700">
+        <div className="bg-green-200 px-3 my-5 mx-3 py-4 max-w-sm text-center  rounded shadow text-xl text-green-700">
           <p>{mensaje.mensaje}</p>
         </div>
       );
     }
     return (
-      <div className="bg-red-200 px-3 my-5 mx-3 py-4 max-w-sm text-center  rounded shadow text-xl text-red-700 border-2 border-red-700">
+      <div className="bg-red-200 px-3 my-5 mx-3 py-4 max-w-sm text-center  rounded shadow text-xl text-red-700">
         <p>{mensaje.mensaje}</p>
       </div>
     );
@@ -82,7 +95,7 @@ const Login = () => {
         <div className="bg-white pt-2 mt-12 rounded-md shadow">
           {mensaje.mensaje && mostrarMensaje()}
           <div className="flex justify-center mt-4">
-            <Usuario className="w-16" />
+            {spinner ? <Spinner /> : <Usuario className="w-16" />}
           </div>
           <h1 className=" my-3 text-center text-blue-900 font-medium text-xl">
             Iniciar Sesión

@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/spinner.css";
 import AuthState from "../context/auth/authState";
 
 import { QueryClient, QueryClientProvider } from "react-query";

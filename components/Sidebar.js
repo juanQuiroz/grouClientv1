@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -20,7 +20,11 @@ const Sidebar = () => {
 
   // Context de autenticacion
   const authsContext = useContext(authContext);
-  const { user } = authsContext;
+  const { user, usuarioAutenticado } = authsContext;
+
+  useEffect(() => {
+    usuarioAutenticado();
+  }, []);
 
   const cerrarSesion = () => {
     localStorage.removeItem("token");
@@ -47,8 +51,10 @@ const Sidebar = () => {
         <div className="flex flex-wrap items-center justify-center md:justify-start mt-10 p-4">
           <Usercircle className="w-9 mr-2" />
           <div>
-            <h2 className="text-gray-800 text-xl font">Nombre</h2>
-            <h3 className="text-gray-700 text-lg font-thin -mt-2">Apellido</h3>
+            <h2 className="text-gray-800 text-xl font">{user.nombres}</h2>
+            <h3 className="text-gray-700 text-lg font-thin -mt-2">
+              {user.apellidos}
+            </h3>
           </div>
         </div>
       )}

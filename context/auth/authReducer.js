@@ -1,12 +1,10 @@
-import { LOGIN_SUCCESS, LOGIN_ERROR } from "../../types";
+import { LOGIN_SUCCESS, LOGIN_ERROR, OBTENER_USUARIO } from "../../types";
 
 export default (state, action) => {
   switch (action.type) {
-    case LOGIN_SUCCESS:
-      // localStorage.setItem("token", action.payload.access_token);
+    case OBTENER_USUARIO:
       return {
         ...state,
-        authtenticated: true,
         user: action.payload,
       };
 

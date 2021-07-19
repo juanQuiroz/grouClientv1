@@ -1,12 +1,11 @@
 import React, { useReducer } from "react";
 import authContext from "./authContext";
 import authReducer from "./authReducer";
-
 import tokenAuth from "../../config/tokenAuth";
-import { useMutation } from "react-query";
+
 import * as api from "../../api/usuarios/usuariosApi";
 
-import { LOGIN_SUCCESS, LOGIN_ERROR } from "../../types";
+import { LOGIN_SUCCESS, LOGIN_ERROR, OBTENER_USUARIO } from "../../types";
 
 // const tkn = localStorage.getItem("token");
 
@@ -15,47 +14,64 @@ const AuthState = props => {
 
   const initialState = {
     // token: tkn,
-    authenticaded: null,
     user: null,
-    query: null,
   };
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  const { isLoading, data, mutate } = useMutation(api.autenticar);
+  // // returns authenticated user
+  // const authenticadedUser = async () => {
+  //   const token = localStorage.getItem("token");
 
-  // returns authenticated user
-  const authenticadedUser = async () => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      // using token taken fron localstorage
-      tokenAuth(token); // use token as headers
-    }
-  };
+  //   if (token) {
+  //     // using token taken fron localstorage
+  //     tokenAuth(token); // use token as headers
+  //   }
+  // };
 
   // Cuando el usuario inicia sesion
-  const logIn = async datos => {
+  // const logIn = async data => {
+  //   try {
+  //     // authenticadedUser();
+  //   } catch (error) {
+  //     console.log(error);
+  //     dispatch({
+  //       type: LOGIN_ERROR,
+  //       payload: false,
+  //     });
+  //   }
+  // };
+
+  const setUserData = data => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: data.user,
+    });
+  };
+
+  // Retorna el usuario autenticado
+  const usuarioAutenticado = async () => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+
+    if (token) {
+      // TODO: funcion para enviar el token por headers
+      // Le pasamos el token obtenido de localStorage
+      const bearertkn = `bearer ${token}`;
+      tokenAuth(bearertkn);
+    }
     try {
-      mutate(datos);
+      const respuesta = await api.obtenerUsuarioActual();
+      console.log(respuesta);
 
-      if (!isLoading) {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: data,
-        });
-      }
-
-      // authenticadedUser();
+      dispatch({
+        type: OBTENER_USUARIO,
+        payload: respuesta.data,
+      });
     } catch (error) {
       console.log(error);
-      const alerta = {
-        msg: error,
-        classname: "bg-red-400 p-4 rounded font-bold shadow-md text-center",
-      };
       dispatch({
         type: LOGIN_ERROR,
-        payload: alerta,
       });
     }
   };
@@ -64,10 +80,9 @@ const AuthState = props => {
     <authContext.Provider
       value={{
         token: state.token,
-        authenticaded: state.authenticaded,
-        query: state.query,
         user: state.user,
-        logIn,
+        setUserData,
+        usuarioAutenticado,
       }}
     >
       {props.children}
